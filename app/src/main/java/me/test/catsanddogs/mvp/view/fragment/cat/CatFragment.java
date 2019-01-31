@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import javax.inject.Inject;
 
 import me.test.catsanddogs.application.AndroidApplication;
+import me.test.catsanddogs.di.Resolver;
 import me.test.catsanddogs.mvp.model.ApiResponse;
 import me.test.catsanddogs.mvp.presenter.cat.CatPresenter;
 
@@ -18,7 +19,7 @@ public class CatFragment extends Fragment implements CatView {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        AndroidApplication.getCatPresenterComponent().inject(this);
+        Resolver.getCatPresenterComponent().inject(this);
     }
 
     @Override

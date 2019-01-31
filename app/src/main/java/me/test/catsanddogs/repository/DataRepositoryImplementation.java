@@ -2,8 +2,8 @@ package me.test.catsanddogs.repository;
 
 import javax.inject.Inject;
 
-import me.test.catsanddogs.application.AndroidApplication;
 import me.test.catsanddogs.constants.Constants;
+import me.test.catsanddogs.di.Resolver;
 import me.test.catsanddogs.mvp.model.ApiResponse;
 import me.test.catsanddogs.services.ApiService;
 
@@ -13,7 +13,7 @@ public class DataRepositoryImplementation implements DataRepository {
     ApiService service;
 
     public DataRepositoryImplementation () {
-        AndroidApplication.getApiComponent().inject(this);
+        Resolver.getApiComponent().inject(this);
     }
 
     @Override

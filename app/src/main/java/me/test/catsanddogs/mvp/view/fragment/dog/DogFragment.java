@@ -6,7 +6,7 @@ import android.support.v4.app.Fragment;
 
 import javax.inject.Inject;
 
-import me.test.catsanddogs.application.AndroidApplication;
+import me.test.catsanddogs.di.Resolver;
 import me.test.catsanddogs.mvp.model.ApiResponse;
 import me.test.catsanddogs.mvp.presenter.dog.DogPresenter;
 
@@ -18,7 +18,7 @@ public class DogFragment extends Fragment implements DogView {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        AndroidApplication.getDogPresenterComponent().inject(this);
+        Resolver.getDogPresenterComponent().inject(this);
     }
 
     @Override

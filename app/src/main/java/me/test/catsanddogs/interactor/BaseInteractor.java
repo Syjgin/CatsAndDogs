@@ -1,14 +1,13 @@
 package me.test.catsanddogs.interactor;
 
-import android.os.Handler;
-import android.os.Looper;
+import javax.inject.Inject;
+
+import me.test.catsanddogs.utils.MainThreadExecutor;
 
 public abstract class BaseInteractor<Response> implements Interactor<Response> {
 
-    private void executeInMainThread(Runnable operation) {
-        Handler handler = new Handler(Looper.getMainLooper());
-        handler.post(operation);
-    }
+    @Inject
+    public MainThreadExecutor executor;
 
     public void executeRequest(final InteractorCallback<Response> callback) {
         Response response = null;
@@ -16,7 +15,7 @@ public abstract class BaseInteractor<Response> implements Interactor<Response> {
             response = execute();
         } catch (final Exception e) {
             e.printStackTrace();
-            executeInMainThread(new Runnable() {
+            executor.executeInMainThread(new Runnable() {
                 @Override
                 public void run() {
                     callback.onFailure(e.getMessage());
@@ -25,14 +24,14 @@ public abstract class BaseInteractor<Response> implements Interactor<Response> {
         }
         if(response != null) {
             final Response finalResponse = response;
-            executeInMainThread(new Runnable() {
+            executor.executeInMainThread(new Runnable() {
                 @Override
                 public void run() {
                     callback.onSuccess(finalResponse);
                 }
             });
         } else {
-            executeInMainThread(new Runnable() {
+            executor.executeInMainThread(new Runnable() {
                 @Override
                 public void run() {
                     callback.onFailure("empty response");
