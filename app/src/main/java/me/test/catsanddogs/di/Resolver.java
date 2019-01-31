@@ -6,6 +6,9 @@ import me.test.catsanddogs.mvp.presenter.cat.DaggerCatPresenterComponent;
 import me.test.catsanddogs.mvp.presenter.dog.DaggerDogPresenterComponent;
 import me.test.catsanddogs.mvp.presenter.dog.DogPresenterComponent;
 import me.test.catsanddogs.mvp.presenter.dog.DogPresenterModule;
+import me.test.catsanddogs.mvp.presenter.main.DaggerMainPresenterComponent;
+import me.test.catsanddogs.mvp.presenter.main.MainPresenterComponent;
+import me.test.catsanddogs.mvp.presenter.main.MainPresenterModule;
 import me.test.catsanddogs.services.ApiComponent;
 import me.test.catsanddogs.services.ApiModule;
 import me.test.catsanddogs.services.DaggerApiComponent;
@@ -28,10 +31,14 @@ public class Resolver {
     private static MainThreadExecutorComponent mainThreadExecutorComponent;
     public static MainThreadExecutorComponent getMainThreadExecutorComponent() { return mainThreadExecutorComponent; }
 
+    private static MainPresenterComponent mainPresenterComponent;
+    public static MainPresenterComponent getMainPresenterComponent() { return mainPresenterComponent; }
+
     public Resolver(Boolean test) {
         apiComponent = DaggerApiComponent.builder().apiModule(new ApiModule()).build();
         catPresenterComponent = DaggerCatPresenterComponent.builder().catPresenterModule(new CatPresenterModule()).build();
         dogPresenterComponent = DaggerDogPresenterComponent.builder().dogPresenterModule(new DogPresenterModule()).build();
         mainThreadExecutorComponent = DaggerMainThreadExecutorComponent.builder().mainThreadExecutorModule(new MainThreadExecutorModule(test)).build();
+        mainPresenterComponent = DaggerMainPresenterComponent.builder().mainPresenterModule(new MainPresenterModule()).build();
     }
 }
