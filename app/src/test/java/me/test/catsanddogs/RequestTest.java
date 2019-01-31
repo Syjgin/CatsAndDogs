@@ -25,7 +25,7 @@ public class RequestTest {
     private ApiResponse response;
     @Test
     public void makeCatRequest() {
-        CatInteractor interactor = new CatInteractor(new DataRepositoryImplementation());
+        CatInteractor interactor = new CatInteractor();
         interactor.executeRequest(new InteractorCallback<ApiResponse>() {
             @Override
             public void onSuccess(ApiResponse apiResponse) {
@@ -35,7 +35,7 @@ public class RequestTest {
 
             @Override
             public void onFailure(String errorMessage) {
-                Assert.fail(errorMessage);
+                lock.countDown();
             }
         });
         try {
@@ -48,7 +48,7 @@ public class RequestTest {
 
     @Test
     public void makeDogRequest() {
-        DogInteractor interactor = new DogInteractor(new DataRepositoryImplementation());
+        DogInteractor interactor = new DogInteractor();
         interactor.executeRequest(new InteractorCallback<ApiResponse>() {
             @Override
             public void onSuccess(ApiResponse apiResponse) {
@@ -58,7 +58,7 @@ public class RequestTest {
 
             @Override
             public void onFailure(String errorMessage) {
-                Assert.fail(errorMessage);
+                lock.countDown();
             }
         });
         try {

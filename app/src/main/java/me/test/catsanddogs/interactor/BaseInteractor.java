@@ -3,17 +3,11 @@ package me.test.catsanddogs.interactor;
 import android.os.Handler;
 import android.os.Looper;
 
-import me.test.catsanddogs.repository.DataRepository;
-
 public abstract class BaseInteractor<Response> implements Interactor<Response> {
-    protected DataRepository repository;
+
     private void executeInMainThread(Runnable operation) {
         Handler handler = new Handler(Looper.getMainLooper());
         handler.post(operation);
-    }
-
-    public BaseInteractor(DataRepository repository) {
-        this.repository = repository;
     }
 
     public void executeRequest(final InteractorCallback<Response> callback) {

@@ -8,6 +8,7 @@ import me.test.catsanddogs.mvp.model.ApiResponse;
 import me.test.catsanddogs.services.ApiService;
 
 public class DataRepositoryImplementation implements DataRepository {
+
     @Inject
     ApiService service;
 

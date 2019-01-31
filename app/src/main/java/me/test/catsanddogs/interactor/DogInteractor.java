@@ -1,16 +1,12 @@
 package me.test.catsanddogs.interactor;
 
 import me.test.catsanddogs.mvp.model.ApiResponse;
-import me.test.catsanddogs.repository.DataRepository;
+import me.test.catsanddogs.repository.DataRepositoryImplementation;
 
 public class DogInteractor extends BaseInteractor<ApiResponse> {
 
-    public DogInteractor(DataRepository repository) {
-        super(repository);
-    }
-
     @Override
     public ApiResponse execute() {
-        return repository.getDog();
+        return new DataRepositoryImplementation().getDog();
     }
 }
