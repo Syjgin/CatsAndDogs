@@ -9,14 +9,19 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import java.util.List;
 
 import me.test.catsanddogs.R;
+import me.test.catsanddogs.mvp.model.ApiResponse;
 import me.test.catsanddogs.mvp.presenter.base.BaseListPresenter;
 import me.test.catsanddogs.mvp.view.adapter.ListAdapter;
 
 public abstract class BaseListFragment extends Fragment implements BaseListView {
 
     protected RecyclerView recyclerView;
+    protected ListAdapter listAdapter = new ListAdapter();
 
     @Nullable
     @Override
@@ -26,11 +31,10 @@ public abstract class BaseListFragment extends Fragment implements BaseListView 
 
     protected void setupAdapter(
             View view,
-            ListAdapter adapter,
             final BaseListPresenter presenter) {
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(listAdapter);
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
@@ -46,9 +50,19 @@ public abstract class BaseListFragment extends Fragment implements BaseListView 
         presenter.loadData(this);
     }
 
+    @Override
+    public void displayData(List<ApiResponse.ImageDescription> response) {
+        listAdapter.displayData(response);
+    }
+
     public void setScrollPosition(int scrollPosition) {
         if(recyclerView != null) {
             recyclerView.scrollToPosition(scrollPosition);
         }
+    }
+
+    @Override
+    public void displayFetchError() {
+        Toast.makeText(getContext(), getString(R.string.fetch_error), Toast.LENGTH_LONG).show();
     }
 }
