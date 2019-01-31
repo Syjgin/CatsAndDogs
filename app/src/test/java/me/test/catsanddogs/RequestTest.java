@@ -9,6 +9,7 @@ import org.robolectric.annotation.Config;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
+import me.test.catsanddogs.application.AndroidApplication;
 import me.test.catsanddogs.interactor.CatInteractor;
 import me.test.catsanddogs.interactor.DogInteractor;
 import me.test.catsanddogs.interactor.InteractorCallback;
@@ -18,7 +19,7 @@ import me.test.catsanddogs.repository.DataRepositoryImplementation;
 import static org.junit.Assert.*;
 
 @RunWith(RobolectricTestRunner.class)
-@Config(manifest = Config.NONE, sdk = 23)
+@Config(application = AndroidApplication.class, sdk = 23)
 public class RequestTest {
     private CountDownLatch lock = new CountDownLatch(1);
     private ApiResponse response;

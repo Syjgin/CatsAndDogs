@@ -11,6 +11,6 @@ public class DogInteractor extends BaseInteractor<ApiResponse> {
 
     @Override
     public ApiResponse execute() {
-        return repository.getCat();
+        return repository.getDog();
     }
 }
