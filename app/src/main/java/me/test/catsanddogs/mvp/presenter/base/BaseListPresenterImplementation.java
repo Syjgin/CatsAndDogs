@@ -4,16 +4,13 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
-import me.test.catsanddogs.constants.Constants;
 import me.test.catsanddogs.interactor.BaseInteractor;
-import me.test.catsanddogs.interactor.CatInteractor;
 import me.test.catsanddogs.interactor.InteractorCallback;
 import me.test.catsanddogs.mvp.model.ApiResponse;
 import me.test.catsanddogs.mvp.model.TabNameLoaded;
 import me.test.catsanddogs.mvp.view.fragment.base.BaseListView;
 
 public abstract class BaseListPresenterImplementation implements BaseListPresenter {
-    private BaseListView view;
     private int scrollPosition = 0;
     private List<ApiResponse.ImageDescription> cachedData;
 
@@ -22,7 +19,6 @@ public abstract class BaseListPresenterImplementation implements BaseListPresent
 
     @Override
     public void loadData(final BaseListView view) {
-        this.view = view;
         if(cachedData != null) {
             displayDataList(view);
         }

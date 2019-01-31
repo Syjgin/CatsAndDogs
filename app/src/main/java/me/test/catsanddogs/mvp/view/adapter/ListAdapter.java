@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.List;
 
 import me.test.catsanddogs.R;
@@ -28,7 +30,15 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListViewHolder
     @Override
     public ListViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View mainView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item, viewGroup, false);
-        return new ListViewHolder(mainView);
+        final ListViewHolder holder =  new ListViewHolder(mainView);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ApiResponse.ImageDescription currentDescription = data.get(holder.getAdapterPosition());
+                EventBus.getDefault().post(currentDescription);
+            }
+        });
+        return holder;
     }
 
     @Override

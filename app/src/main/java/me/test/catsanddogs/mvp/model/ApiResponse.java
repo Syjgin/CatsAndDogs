@@ -1,9 +1,10 @@
 package me.test.catsanddogs.mvp.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class ApiResponse {
-    public static class ImageDescription {
+    public static class ImageDescription implements Serializable {
         public final String url;
         public final String title;
         public ImageDescription(String url, String title) {

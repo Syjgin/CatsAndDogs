@@ -1,19 +1,26 @@
-package me.test.catsanddogs.mvp.view.activity;
+package me.test.catsanddogs.mvp.view.activity.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 
 import javax.inject.Inject;
 
 import me.test.catsanddogs.R;
+import me.test.catsanddogs.constants.Constants;
 import me.test.catsanddogs.di.Resolver;
+import me.test.catsanddogs.mvp.model.ApiResponse;
 import me.test.catsanddogs.mvp.presenter.main.MainPresenter;
+import me.test.catsanddogs.mvp.view.activity.back.BackActivity;
+import me.test.catsanddogs.mvp.view.activity.detail.DetailActivity;
 import me.test.catsanddogs.mvp.view.fragment.cat.CatFragment;
 import me.test.catsanddogs.mvp.view.fragment.dog.DogFragment;
 
-public class MainActivity extends AppCompatActivity implements MainView {
+public class MainActivity extends BackActivity implements MainView {
 
     private TabLayout tablayout;
 
@@ -24,9 +31,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         tablayout = findViewById(R.id.tabs);
-
         Resolver.getMainPresenterComponent().inject(this);
         presenter.onCreate(this);
     }
@@ -57,8 +62,8 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     @Override
     public void setupTabs() {
-        tablayout.addTab(tablayout.newTab(), 0);
-        tablayout.addTab(tablayout.newTab(), 1);
+        tablayout.addTab(tablayout.newTab(), Constants.CatIndex);
+        tablayout.addTab(tablayout.newTab(), Constants.DogIndex);
         tablayout.setOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -83,6 +88,15 @@ public class MainActivity extends AppCompatActivity implements MainView {
         if(tab != null && !tab.isSelected()) {
             tab.select();
         }
+    }
+
+    @Override
+    public void displayDetailPage(ApiResponse.ImageDescription description) {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(Constants.DetailKey, description);
+        Intent intent = new Intent(this, DetailActivity.class);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
     @Override

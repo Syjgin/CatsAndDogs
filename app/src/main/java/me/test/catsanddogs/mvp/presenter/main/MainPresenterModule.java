@@ -9,7 +9,7 @@ import dagger.Provides;
 public class MainPresenterModule {
     @Provides
     @Singleton
-    MainPresenter provideCatPresenter() {
+    MainPresenter provideMainPresenter() {
         return new MainPresenter();
     }
 }

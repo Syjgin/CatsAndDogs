@@ -8,7 +8,7 @@ import me.test.catsanddogs.interactor.DogInteractor;
 import me.test.catsanddogs.interactor.InteractorCallback;
 import me.test.catsanddogs.mvp.model.ApiResponse;
 import me.test.catsanddogs.mvp.model.TabNameLoaded;
-import me.test.catsanddogs.mvp.view.activity.MainView;
+import me.test.catsanddogs.mvp.view.activity.main.MainView;
 
 public class MainPresenter {
 
@@ -77,5 +77,10 @@ public class MainPresenter {
             secondTabText = event.tabName;
         }
         view.showTabName(event.tabIndex, event.tabName);
+    }
+
+    @Subscribe
+    public void onListElementClicked(ApiResponse.ImageDescription event) {
+        view.displayDetailPage(event);
     }
 }

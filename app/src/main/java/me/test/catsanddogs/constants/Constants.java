@@ -6,4 +6,5 @@ public class Constants {
     public static String Dog = "dog";
     public static int CatIndex = 0;
     public static int DogIndex = 1;
+    public static String DetailKey = "DetailKey";
 }
