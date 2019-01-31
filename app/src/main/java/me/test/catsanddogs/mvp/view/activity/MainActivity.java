@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
     }
 
     @Override
-    public void showTabName(Integer index, String name) {
+    public void showTabName(int index, String name) {
         TabLayout.Tab tab = tablayout.getTabAt(index);
         if(tab != null) {
             tab.setText(name);
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
     }
 
     @Override
-    public void setTabIndex(Integer index) {
+    public void setTabIndex(int index) {
         TabLayout.Tab tab = tablayout.getTabAt(index);
         if(tab != null && !tab.isSelected()) {
             tab.select();

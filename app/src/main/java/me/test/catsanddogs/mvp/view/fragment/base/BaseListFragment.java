@@ -15,6 +15,9 @@ import me.test.catsanddogs.mvp.presenter.base.BaseListPresenter;
 import me.test.catsanddogs.mvp.view.adapter.ListAdapter;
 
 public abstract class BaseListFragment extends Fragment implements BaseListView {
+
+    protected RecyclerView recyclerView;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -24,10 +27,28 @@ public abstract class BaseListFragment extends Fragment implements BaseListView 
     protected void setupAdapter(
             View view,
             ListAdapter adapter,
-            BaseListPresenter presenter) {
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
+            final BaseListPresenter presenter) {
+        recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(adapter);
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                presenter.saveScrollPosition(((LinearLayoutManager)recyclerView.getLayoutManager()).findFirstCompletelyVisibleItemPosition());
+            }
+        });
         presenter.loadData(this);
+    }
+
+    public void setScrollPosition(int scrollPosition) {
+        if(recyclerView != null) {
+            recyclerView.scrollToPosition(scrollPosition);
+        }
     }
 }

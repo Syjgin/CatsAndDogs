@@ -13,7 +13,7 @@ import me.test.catsanddogs.mvp.view.activity.MainView;
 public class MainPresenter {
 
     private MainView view;
-    private Integer selectedTab = Constants.CatIndex;
+    private int selectedTab = Constants.CatIndex;
     private String firstTabText;
     private String secondTabText;
 
@@ -48,9 +48,9 @@ public class MainPresenter {
     }
 
     private void refreshFragments() {
-        if(selectedTab.equals(Constants.CatIndex)) {
+        if(selectedTab == Constants.CatIndex) {
             view.loadCatFragment();
-        } else if(selectedTab.equals(Constants.DogIndex)) {
+        } else if(selectedTab == Constants.DogIndex) {
             view.loadDogFragment();
         }
     }
@@ -70,10 +70,10 @@ public class MainPresenter {
 
     @Subscribe
     public void onTabNameLoaded(TabNameLoaded event) {
-        if(event.tabIndex.equals(Constants.CatIndex)) {
+        if(event.tabIndex == Constants.CatIndex) {
             firstTabText = event.tabName;
         }
-        if(event.tabIndex.equals(Constants.DogIndex)) {
+        if(event.tabIndex == Constants.DogIndex) {
             secondTabText = event.tabName;
         }
         view.showTabName(event.tabIndex, event.tabName);

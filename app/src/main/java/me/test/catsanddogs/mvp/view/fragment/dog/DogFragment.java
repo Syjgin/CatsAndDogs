@@ -20,6 +20,7 @@ public class DogFragment extends BaseListFragment implements BaseListView {
 
     private ListAdapter listAdapter = new ListAdapter();
 
+
     @Inject
     DogPresenter dogPresenter;
 

@@ -7,4 +7,5 @@ import me.test.catsanddogs.mvp.model.ApiResponse;
 public interface BaseListView {
     void displayData(List<ApiResponse.ImageDescription> response);
     void displayFetchError();
+    void setScrollPosition(int scrollPosition);
 }
