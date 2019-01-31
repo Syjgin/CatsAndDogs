@@ -7,13 +7,14 @@ import me.test.catsanddogs.interactor.DogInteractor;
 import me.test.catsanddogs.interactor.InteractorCallback;
 import me.test.catsanddogs.mvp.model.ApiResponse;
 import me.test.catsanddogs.mvp.model.TabNameLoaded;
-import me.test.catsanddogs.mvp.view.fragment.dog.DogView;
+import me.test.catsanddogs.mvp.presenter.base.BaseListPresenter;
+import me.test.catsanddogs.mvp.view.fragment.base.BaseListView;
 
-public class DogPresenter {
+public class DogPresenter implements BaseListPresenter {
+    private BaseListView view;
 
-    private DogView view;
-
-    public void loadData(final DogView view) {
+    @Override
+    public void loadData(final BaseListView view) {
         this.view = view;
         DogInteractor interactor = new DogInteractor();
         interactor.execute(new InteractorCallback<ApiResponse>() {
