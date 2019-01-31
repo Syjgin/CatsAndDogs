@@ -2,14 +2,16 @@ package me.test.catsanddogs.mvp.view.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 import javax.inject.Inject;
 
 import me.test.catsanddogs.R;
 import me.test.catsanddogs.di.Resolver;
 import me.test.catsanddogs.mvp.presenter.main.MainPresenter;
+import me.test.catsanddogs.mvp.view.fragment.cat.CatFragment;
+import me.test.catsanddogs.mvp.view.fragment.dog.DogFragment;
 
 public class MainActivity extends AppCompatActivity implements MainView {
 
@@ -39,12 +41,18 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     @Override
     public void loadCatFragment() {
-        Log.d("TAB", "cats");
+        CatFragment catFragment = new CatFragment();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.container, catFragment);
+        transaction.commit();
     }
 
     @Override
     public void loadDogFragment() {
-        Log.d("TAB", "dogs");
+        DogFragment catFragment = new DogFragment();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.container, catFragment);
+        transaction.commit();
     }
 
     @Override

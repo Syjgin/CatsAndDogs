@@ -3,6 +3,9 @@ package me.test.catsanddogs.repository;
 import me.test.catsanddogs.mvp.model.ApiResponse;
 
 public interface DataRepository {
-    ApiResponse getCat();
-    ApiResponse getDog();
+    interface RepositoryCallback {
+        void onLoad(ApiResponse response);
+    }
+    void getCat(RepositoryCallback callback);
+    void getDog(RepositoryCallback callback);
 }

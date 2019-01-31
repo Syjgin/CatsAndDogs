@@ -1,5 +1,5 @@
 package me.test.catsanddogs.interactor;
 
 public interface Interactor<Response> {
-    Response execute();
+    void execute(InteractorCallback<Response> callback);
 }

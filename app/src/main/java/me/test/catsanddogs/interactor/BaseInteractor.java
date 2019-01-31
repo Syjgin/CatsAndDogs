@@ -9,32 +9,20 @@ public abstract class BaseInteractor<Response> implements Interactor<Response> {
     @Inject
     public MainThreadExecutor executor;
 
-    public void executeRequest(final InteractorCallback<Response> callback) {
-        Response response = null;
-        try {
-            response = execute();
-        } catch (final Exception e) {
-            e.printStackTrace();
+    void handleRepositoryResponse(Object repositoryResponse, final InteractorCallback<Response> interactorCallback) {
+        if(repositoryResponse == null) {
             executor.executeInMainThread(new Runnable() {
                 @Override
                 public void run() {
-                    callback.onFailure(e.getMessage());
-                }
-            });
-        }
-        if(response != null) {
-            final Response finalResponse = response;
-            executor.executeInMainThread(new Runnable() {
-                @Override
-                public void run() {
-                    callback.onSuccess(finalResponse);
+                    interactorCallback.onFailure("empty response");
                 }
             });
         } else {
+            final Response finalResponse = (Response) repositoryResponse;
             executor.executeInMainThread(new Runnable() {
                 @Override
                 public void run() {
-                    callback.onFailure("empty response");
+                    interactorCallback.onSuccess(finalResponse);
                 }
             });
         }
