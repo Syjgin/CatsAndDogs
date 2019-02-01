@@ -22,7 +22,7 @@ public class MainActivity extends BackActivity implements MainView {
     private TabLayout tablayout;
 
     @Inject
-    public MainPresenter presenter;
+    MainPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

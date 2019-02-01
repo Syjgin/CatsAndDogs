@@ -20,8 +20,8 @@ import me.test.catsanddogs.mvp.view.adapter.ListAdapter;
 
 public abstract class BaseListFragment extends Fragment implements BaseListView {
 
-    protected RecyclerView recyclerView;
-    protected ListAdapter listAdapter = new ListAdapter();
+    private RecyclerView recyclerView;
+    private final ListAdapter listAdapter = new ListAdapter();
 
     @Nullable
     @Override

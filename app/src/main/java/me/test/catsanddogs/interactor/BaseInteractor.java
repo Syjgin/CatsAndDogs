@@ -7,7 +7,7 @@ import me.test.catsanddogs.utils.MainThreadExecutor;
 public abstract class BaseInteractor<Response> implements Interactor<Response> {
 
     @Inject
-    public MainThreadExecutor executor;
+    MainThreadExecutor executor;
 
     void handleRepositoryResponse(Object repositoryResponse, final InteractorCallback<Response> interactorCallback) {
         if(repositoryResponse == null) {

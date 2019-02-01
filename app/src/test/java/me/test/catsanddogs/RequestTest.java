@@ -14,7 +14,7 @@ import me.test.catsanddogs.interactor.InteractorCallback;
 import me.test.catsanddogs.mvp.model.ApiResponse;
 
 public class RequestTest {
-    private CountDownLatch lock = new CountDownLatch(1);
+    private final CountDownLatch lock = new CountDownLatch(1);
     private ApiResponse response;
 
     @Before

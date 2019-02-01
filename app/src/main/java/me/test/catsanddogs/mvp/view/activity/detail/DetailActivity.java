@@ -17,7 +17,7 @@ import me.test.catsanddogs.mvp.view.activity.back.BackActivity;
 public class DetailActivity extends BackActivity implements DetailView {
 
     @Inject
-    public DetailPresenter presenter;
+    DetailPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

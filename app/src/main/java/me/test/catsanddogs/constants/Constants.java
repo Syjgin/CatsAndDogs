@@ -1,10 +1,10 @@
 package me.test.catsanddogs.constants;
 
 public class Constants {
-    public static String BaseUrl = "http:/kot3.com/";
-    public static String Cat = "cat";
-    public static String Dog = "dog";
-    public static int CatIndex = 0;
-    public static int DogIndex = 1;
-    public static String DetailKey = "DetailKey";
+    public static final String BaseUrl = "http:/kot3.com/";
+    public static final String Cat = "cat";
+    public static final String Dog = "dog";
+    public static final int CatIndex = 0;
+    public static final int DogIndex = 1;
+    public static final String DetailKey = "DetailKey";
 }
