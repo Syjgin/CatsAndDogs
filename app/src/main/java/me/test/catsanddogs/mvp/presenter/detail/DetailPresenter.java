@@ -10,6 +10,7 @@ public class DetailPresenter {
 
     public void onCreate(final DetailView detailView, Bundle bundle) {
         ApiResponse.ImageDescription description = (ApiResponse.ImageDescription) bundle.getSerializable(Constants.DetailKey);
-        detailView.displayData(description);
+        if(description != null)
+            detailView.displayData(description);
     }
 }

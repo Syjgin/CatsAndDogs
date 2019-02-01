@@ -4,9 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
 
 import javax.inject.Inject;
 
@@ -64,7 +61,7 @@ public class MainActivity extends BackActivity implements MainView {
     public void setupTabs() {
         tablayout.addTab(tablayout.newTab(), Constants.CatIndex);
         tablayout.addTab(tablayout.newTab(), Constants.DogIndex);
-        tablayout.setOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {
+        tablayout.addOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 presenter.selectTab(tab.getPosition());

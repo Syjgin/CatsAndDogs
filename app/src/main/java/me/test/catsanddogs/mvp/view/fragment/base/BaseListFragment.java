@@ -44,7 +44,9 @@ public abstract class BaseListFragment extends Fragment implements BaseListView 
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                presenter.saveScrollPosition(((LinearLayoutManager)recyclerView.getLayoutManager()).findFirstCompletelyVisibleItemPosition());
+                LinearLayoutManager layoutManager = (LinearLayoutManager)recyclerView.getLayoutManager();
+                if(layoutManager != null)
+                    presenter.saveScrollPosition(layoutManager.findFirstCompletelyVisibleItemPosition());
             }
         });
         presenter.loadData(this);
